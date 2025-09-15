@@ -1,1 +1,0 @@
-export default function Page(){return (<div className='container pt-20'><h1 className='text-3xl font-bold mb-4'>Terms</h1><p className='text-neutral-300'>This is a minimal placeholder. Replace with your terms.</p></div>)}
