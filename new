@@ -1,0 +1,1764 @@
+// app/page.tsx (Fixed - was incorrectly labeled as services)
+import { Metadata } from "next";
+import Link from "next/link";
+import { SectionWrapper } from "@/components/section-wrapper";
+import { Card } from "@/components/card";
+import { KPIChip } from "@/components/kpi-chip";
+import { StatsRow } from "@/components/stats-row";
+import { trackEvent } from "@/lib/analytics";
+
+export const metadata: Metadata = {
+  title: "K&Co. — Product & Technology Consultancy | Build the right thing. Ship it faster.",
+  description: "We're a Product & Technology Consultancy that turns ideas into outcomes with lean discovery, clear roadmaps, and production-ready delivery. Discovery sprints, project builds, and fractional teams.",
+  openGraph: {
+    title: "K&Co. — Product & Technology Consultancy",
+    description: "Build the right thing. Ship it faster. We turn ideas into outcomes with lean discovery and production-ready delivery.",
+    url: "/",
+  },
+};
+
+export default function HomePage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <SectionWrapper className="pt-24 md:pt-32">
+        <div className="text-center max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">
+            Build the right thing. Ship it faster.
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 text-balance">
+            We're a <span className="text-k-purple-primary font-semibold">Product & Technology Consultancy</span> that turns ideas into outcomes with <span className="text-white">lean discovery, clear roadmaps, and production-ready delivery</span>.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/contact"
+              className="bg-k-purple-primary hover:bg-k-purple-deep text-white rounded-xl px-8 py-4 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-k-purple-soft transition-colors"
+              onClick={() => trackEvent("CTA Click", { location: "hero", action: "book_consult" })}
+            >
+              Book a 20-min consult
+            </Link>
+            <Link 
+              href="/services"
+              className="border border-k-gray-700 hover:border-k-purple-primary text-white rounded-xl px-8 py-4 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-k-purple-soft transition-colors"
+            >
+              See services
+            </Link>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Value Blocks */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Three ways we help you ship</h2>
+          <p className="text-xl text-gray-300">Pick the engagement that fits your stage and timeline</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Card
+            title="Discovery Sprint"
+            description="Problem framing, KPI plan, roadmap, designs, estimates."
+            bullets={[
+              "User research & problem validation",
+              "Technical architecture planning",
+              "Clear success metrics & KPIs",
+              "Detailed project roadmap",
+              "2-week delivery timeline"
+            ]}
+            cta={{ text: "Learn more", href: "/services" }}
+          />
+          
+          <Card
+            title="Project Build"
+            description="Fixed scope, weekly demos, acceptance criteria, Vercel launch → Lite Retainer."
+            bullets={[
+              "Production-ready development",
+              "Weekly demos & feedback loops",
+              "Full deployment & monitoring",
+              "6-10 week delivery",
+              "Seamless handoff to retainer"
+            ]}
+            cta={{ text: "Learn more", href: "/services" }}
+          />
+          
+          <Card
+            title="Fractional Team"
+            description="Capacity-based delivery, outcomes tied to KPIs, renew monthly after 3-month start."
+            bullets={[
+              "Dedicated capacity allocation",
+              "KPI-driven outcomes",
+              "Monthly sprint cycles",
+              "Flexible team scaling",
+              "Long-term partnership"
+            ]}
+            cta={{ text: "Learn more", href: "/services" }}
+          />
+        </div>
+      </SectionWrapper>
+
+      {/* Outcomes by ICP */}
+      <SectionWrapper>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Outcomes by product type</h2>
+          <p className="text-xl text-gray-300">We tailor our approach to your business model</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-4">SaaS</h3>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <KPIChip label="User Activation" value="↑40%" />
+              <KPIChip label="Feature Adoption" value="↑65%" />
+              <KPIChip label="Churn Reduction" value="↓25%" />
+              <KPIChip label="Revenue Growth" value="↑30%" />
+            </div>
+            <p className="text-gray-300">Focus on user engagement, feature adoption, and reducing churn through data-driven product decisions.</p>
+          </div>
+          
+          <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-4">D2C</h3>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <KPIChip label="Conversion Rate" value="↑50%" />
+              <KPIChip label="AOV" value="↑35%" />
+              <KPIChip label="LTV" value="↑60%" />
+              <KPIChip label="CAC Payback" value="↓40%" />
+            </div>
+            <p className="text-gray-300">Optimize conversion funnels, increase average order value, and improve customer lifetime value.</p>
+          </div>
+          
+          <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-4">Marketplace</h3>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <KPIChip label="GMV" value="↑80%" />
+              <KPIChip label="Take Rate" value="↑20%" />
+              <KPIChip label="Liquidity" value="↑45%" />
+              <KPIChip label="Retention" value="↑55%" />
+            </div>
+            <p className="text-gray-300">Build network effects, improve supply-demand matching, and increase transaction volume.</p>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Proof Strip */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Trusted by growing companies</h2>
+          <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-xl font-semibold text-white mb-4">Lab Build Case #1</h3>
+            <p className="text-gray-300 mb-6">
+              Built a complete SaaS analytics dashboard in 6 weeks. Increased user engagement by 40% and reduced churn by 25% within 3 months of launch.
+            </p>
+            <StatsRow 
+              stats={[
+                { label: "Delivery Time", value: "6 weeks" },
+                { label: "User Growth", value: "+40%" },
+                { label: "Churn Reduction", value: "-25%" },
+                { label: "Client Satisfaction", value: "100%" }
+              ]}
+            />
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <p className="text-gray-400 mb-4">Weekly releases • Modern stack</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+            <div className="text-white font-semibold">Stripe</div>
+            <div className="text-white font-semibold">Auth0</div>
+            <div className="text-white font-semibold">Vercel</div>
+            <div className="text-white font-semibold">PostHog</div>
+            <div className="text-white font-semibold">Next.js</div>
+            <div className="text-white font-semibold">Tailwind</div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* CTA Band */}
+      <SectionWrapper>
+        <div className="bg-gradient-to-r from-k-purple-deep to-k-purple-primary rounded-3xl p-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to ship faster?</h2>
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Let's discuss your project and find the right engagement model for your goals and timeline.
+          </p>
+          <Link 
+            href="/contact"
+            className="bg-white text-k-purple-primary hover:bg-gray-100 rounded-xl px-8 py-4 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 transition-colors inline-block"
+            onClick={() => trackEvent("CTA Click", { location: "bottom_cta", action: "book_consult" })}
+          >
+            Book a 20-min consult
+          </Link>
+        </div>
+      </SectionWrapper>
+    </>
+  );
+}
+
+// app/services/page.tsx (Fixed with proper imports and content)
+import { Metadata } from "next";
+import Link from "next/link";
+import { SectionWrapper } from "@/components/section-wrapper";
+import { Card } from "@/components/card";
+import { FAQAccordion } from "@/components/faq-accordion";
+
+export const metadata: Metadata = {
+  title: "Services — K&Co. Product & Technology Consultancy",
+  description: "Discovery Sprint (~$3.5k), Project Build ($30-60k), and Fractional Team ($12-18k/month). Choose the right engagement for your timeline and budget.",
+  openGraph: {
+    title: "Services — K&Co.",
+    description: "Discovery Sprint, Project Build, and Fractional Team services tailored to your needs.",
+    url: "/services",
+  },
+};
+
+export default function ServicesPage() {
+  const faqItems = [
+    {
+      question: "How do you choose between Discovery Sprint and Project Build?",
+      answer: "Start with Discovery Sprint if you need validation, planning, or estimates. Choose Project Build if you have clear requirements and want immediate development."
+    },
+    {
+      question: "What's included in the Fractional Team capacity?",
+      answer: "Each capacity point equals ~2 hours of work. You get dedicated developer time, strategic guidance, and flexible allocation across design, development, and consultation."
+    },
+    {
+      question: "Can I upgrade from Discovery to Project Build?",
+      answer: "Absolutely! Most Discovery Sprint clients transition to Project Build. We'll apply your Discovery insights directly to the development phase."
+    },
+    {
+      question: "What happens after Project Build delivery?",
+      answer: "We offer a Lite Retainer starting at $3k/month for maintenance, minor updates, and ongoing consultation. It's perfect for post-launch optimization."
+    }
+  ];
+
+  return (
+    <>
+      <SectionWrapper className="pt-24">
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Services built for speed
+          </h1>
+          <p className="text-xl text-gray-300">
+            Three engagement models designed to get you from idea to market faster, with clear deliverables and transparent pricing.
+          </p>
+        </div>
+      </SectionWrapper>
+
+      {/* Service Cards */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <Card
+            title="Discovery Sprint"
+            description="Validate your idea, plan the build, and get accurate estimates in 2 weeks."
+            bullets={[
+              "User research & problem validation",
+              "Technical architecture planning", 
+              "KPI framework & success metrics",
+              "UI/UX designs & user flows",
+              "Detailed project roadmap & estimates"
+            ]}
+            cta={{ text: "Start Discovery — $3.5k", href: "/contact" }}
+          />
+          
+          <Card
+            title="Project Build"
+            description="Fixed scope development with weekly demos and production deployment."
+            bullets={[
+              "Full-stack development & testing",
+              "Weekly demos & feedback cycles",
+              "Production deployment on Vercel",
+              "Analytics & monitoring setup",
+              "Documentation & team handoff"
+            ]}
+            cta={{ text: "Start Project — $30-60k", href: "/contact" }}
+          />
+          
+          <Card
+            title="Fractional Team"
+            description="Ongoing product development with dedicated capacity and KPI-driven outcomes."
+            bullets={[
+              "Dedicated development capacity",
+              "Monthly sprint planning",
+              "Strategic product guidance",
+              "Flexible team scaling",
+              "Long-term partnership"
+            ]}
+            cta={{ text: "Join Fractional — $12-18k/mo", href: "/contact" }}
+          />
+        </div>
+      </SectionWrapper>
+
+      {/* FAQ */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Frequently asked questions</h2>
+          <FAQAccordion items={faqItems} />
+        </div>
+      </SectionWrapper>
+
+      {/* CTA */}
+      <SectionWrapper>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to choose your engagement?</h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Book a 20-minute consultation to discuss your project and find the perfect service fit.
+          </p>
+          <Link 
+            href="/contact"
+            className="bg-k-purple-primary hover:bg-k-purple-deep text-white rounded-xl px-8 py-4 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-k-purple-soft transition-colors inline-block"
+          >
+            Book consultation
+          </Link>
+        </div>
+      </SectionWrapper>
+    </>
+  );
+}
+
+// app/how-we-work/page.tsx (NEW - was missing)
+import { Metadata } from "next";
+import Link from "next/link";
+import { SectionWrapper } from "@/components/section-wrapper";
+import { Card } from "@/components/card";
+
+export const metadata: Metadata = {
+  title: "How We Work — K&Co. Product & Technology Consultancy",
+  description: "Our process, rituals, and tooling. Learn how we deliver high-quality products through lean discovery, agile development, and continuous feedback loops.",
+  openGraph: {
+    title: "How We Work — K&Co.",
+    description: "Our proven process for delivering high-quality products on time and on budget.",
+    url: "/how-we-work",
+  },
+};
+
+export default function HowWeWorkPage() {
+  return (
+    <>
+      <SectionWrapper className="pt-24">
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            How we work
+          </h1>
+          <p className="text-xl text-gray-300">
+            Our proven process, rituals, and tooling designed to deliver high-quality products on time and on budget.
+          </p>
+        </div>
+      </SectionWrapper>
+
+      {/* Process Overview */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Process</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-k-purple-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-k-purple-primary">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Discover</h3>
+              <p className="text-gray-300">
+                We start by understanding your users, validating problems, and defining clear success metrics through research and discovery.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-k-purple-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-k-purple-primary">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Design</h3>
+              <p className="text-gray-300">
+                We create user-centered designs and technical architecture that align with your business goals and user needs.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-k-purple-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-k-purple-primary">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Deliver</h3>
+              <p className="text-gray-300">
+                We build production-ready solutions with weekly demos, continuous testing, and seamless deployment processes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Rituals & Communication */}
+      <SectionWrapper>
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Rituals & Communication</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-white mb-6">Weekly Rituals</h3>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Monday: Sprint Planning</h4>
+                  <p className="text-gray-300 text-sm">Review priorities, plan the week's work, and align on deliverables.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Wednesday: Mid-week Sync</h4>
+                  <p className="text-gray-300 text-sm">Progress check-in, address blockers, and course-correct if needed.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Friday: Demo & Retro</h4>
+                  <p className="text-gray-300 text-sm">Show completed work, gather feedback, and improve our process.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-white mb-6">Communication</h3>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Dedicated Slack Channel</h4>
+                  <p className="text-gray-300 text-sm">Real-time communication for quick questions and daily updates.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Notion Workspace</h4>
+                  <p className="text-gray-300 text-sm">Centralized documentation, project plans, and decision records.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Linear Project Board</h4>
+                  <p className="text-gray-300 text-sm">Task management, progress tracking, and sprint planning.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Tech Stack & Tools */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Tech Stack</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <Card
+              title="Frontend"
+              description="Modern, performant, and accessible user interfaces."
+              bullets={[
+                "Next.js 14 with App Router",
+                "TypeScript for type safety",
+                "Tailwind CSS for styling",
+                "React Server Components",
+                "Progressive Web App features"
+              ]}
+            />
+            
+            <Card
+              title="Backend & Database"
+              description="Scalable, secure, and reliable server-side solutions."
+              bullets={[
+                "Next.js API Routes",
+                "PostgreSQL with Prisma ORM",
+                "Supabase for rapid development",
+                "Auth0 for authentication",
+                "Stripe for payments"
+              ]}
+            />
+            
+            <Card
+              title="Deployment & Monitoring"
+              description="Fast deployment with comprehensive monitoring."
+              bullets={[
+                "Vercel for hosting & CI/CD",
+                "PostHog for analytics",
+                "Sentry for error monitoring",
+                "Plausible for privacy-friendly analytics",
+                "GitHub for version control"
+              ]}
+            />
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Quality Standards */}
+      <SectionWrapper>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Quality Standards</h2>
+          
+          <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">Code Quality</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li>• TypeScript for type safety</li>
+                  <li>• ESLint and Prettier for consistency</li>
+                  <li>• Unit and integration testing</li>
+                  <li>• Code reviews for all changes</li>
+                  <li>• Automated CI/CD pipelines</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">User Experience</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li>• Mobile-first responsive design</li>
+                  <li>• WCAG accessibility compliance</li>
+                  <li>• Performance optimization</li>
+                  <li>• User testing and feedback</li>
+                  <li>• Analytics and monitoring</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* CTA */}
+      <SectionWrapper className="bg-k-gray-900">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to work with us?</h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Experience our proven process firsthand. Book a consultation to discuss your project and see how we can help you ship faster.
+          </p>
+          <Link 
+            href="/contact"
+            className="bg-k-purple-primary hover:bg-k-purple-deep text-white rounded-xl px-8 py-4 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-k-purple-soft transition-colors inline-block"
+          >
+            Book consultation
+          </Link>
+        </div>
+      </SectionWrapper>
+    </>
+  );
+}
+
+// app/api/contact/route.ts (Fixed with proper Brevo integration)
+import { NextRequest, NextResponse } from "next/server";
+
+// Brevo API integration
+async function sendEmailViaBevo(emailData: {
+  to: string;
+  subject: string;
+  htmlContent: string;
+}) {
+  const brevoApiKey = process.env.BREVO_API_KEY;
+  const brevoSender = process.env.BREVO_SENDER_EMAIL || "hello@kco-consultancy.com";
+  
+  if (!brevoApiKey) {
+    throw new Error("Brevo API key not configured");
+  }
+
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "api-key": brevoApiKey,
+    },
+    body: JSON.stringify({
+      sender: {
+        name: "K&Co. Contact Form",
+        email: brevoSender,
+      },
+      to: [{ email: emailData.to }],
+      subject: emailData.subject,
+      htmlContent: emailData.htmlContent,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.text();
+    throw new Error(`Brevo API error: ${response.status} - ${errorData}`);
+  }
+
+  return response.json();
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { name, email, company, website, budget, message } = body;
+
+    // Basic validation
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Missing required fields: name, email, and message are required" },
+        { status: 400 }
+      );
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email format" },
+        { status: 400 }
+      );
+    }
+
+    // Log the submission
+    console.log("Contact form submission:", {
+      name,
+      email,
+      company: company || "Not provided",
+      website: website || "Not provided",
+      budget: budget || "Not specified",
+      message,
+      timestamp: new Date().toISOString(),
+      userAgent: request.headers.get("user-agent"),
+      ip: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip"),
+    });
+
+    // Send email via Brevo
+    try {
+      await sendEmailViaBevo({
+        to: "hello@kco-consultancy.com",
+        subject: `New Contact Form Submission from ${name}`,
+        htmlContent: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #9236E5; margin-bottom: 20px;">New Contact Form Submission</h2>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="margin-top: 0; color: #333;">Contact Information</h3>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+              <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+              <p><strong>Website:</strong> ${website ? `<a href="${website}" target="_blank">${website}</a>` : 'Not provided'}</p>
+              <p><strong>Budget Range:</strong> ${budget || 'Not specified'}</p>
+            </div>
+            
+            <div style="background: #fff; padding: 20px; border-left: 4px solid #9236E5; margin-bottom: 20px;">
+              <h3 style="margin-top: 0; color: #333;">Project Details</h3>
+              <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 12px; color: #666;">
+              <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+              <p><strong>User Agent:</strong> ${request.headers.get("user-agent")}</p>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; color: #666; font-size: 12px;">
+              <p>This email was sent from the K&Co. contact form at kco-consultancy.vercel.app</p>
+            </div>
+          </div>
+        `,
+      });
+
+      // Send confirmation email to the user
+      await sendEmailViaBevo({
+        to: email,
+        subject: "Thanks for reaching out to K&Co.",
+        htmlContent: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <h1 style="color: #9236E5; font-size: 28px; margin-bottom: 10px;">K&Co.</h1>
+              <p style="color: #666; font-size: 16px;">Product & Technology Consultancy</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+              <h2 style="color: #333; margin-top: 0;">Thanks for reaching out!</h2>
+              <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                Hi ${name},
+              </p>
+              <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                We've received your message and will get back to you within 24 hours. We're excited to learn more about your project!
+              </p>
+              <p style="color: #666; line-height: 1.6;">
+                In the meantime, feel free to check out our <a href="https://kco-consultancy.vercel.app/case-studies" style="color: #9236E5;">case studies</a> or learn more about <a href="https://kco-consultancy.vercel.app/how-we-work" style="color: #9236E5;">how we work</a>.
+              </p>
+            </div>
+            
+            <div style="background: #fff; padding: 20px; border: 2px solid #9236E5; border-radius: 8px; margin-bottom: 30px;">
+              <h3 style="color: #333; margin-top: 0;">What happens next?</h3>
+              <ol style="color: #666; line-height: 1.8; padding-left: 20px;">
+                <li>We'll review your project details and respond within 24 hours</li>
+                <li>Schedule a 20-minute consultation call to discuss your needs</li>
+                <li>Receive a custom proposal with timeline and pricing</li>
+                <li>Start building your project within 1-2 weeks</li>
+              </ol>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 14px;">
+              <p>Have questions? Reply to this email or contact us at <a href="mailto:hello@kco-consultancy.com" style="color: #9236E5;">hello@kco-consultancy.com</a></p>
+              <p style="margin-top: 15px;">
+                <a href="https://kco-consultancy.vercel.app" style="color: #9236E5; text-decoration: none;">kco-consultancy.vercel.app</a>
+              </p>
+            </div>
+          </div>
+        `,
+      });
+
+      console.log("Contact form emails sent successfully");
+
+    } catch (emailError) {
+      console.error("Failed to send email:", emailError);
+      // Don't fail the request if email fails, just log it
+      // In production, you might want to queue this for retry
+    }
+
+    return NextResponse.json({ 
+      success: true, 
+      message: "Thank you for your message! We'll get back to you within 24 hours." 
+    });
+
+  } catch (error) {
+    console.error("Contact form error:", error);
+    
+    // Return different error messages based on the error type
+    if (error instanceof Error) {
+      if (error.message.includes("Brevo")) {
+        return NextResponse.json(
+          { error: "Email service temporarily unavailable. Please try again or contact us directly at hello@kco-consultancy.com" },
+          { status: 503 }
+        );
+      }
+    }
+    
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again or contact us directly at hello@kco-consultancy.com" },
+      { status: 500 }
+    );
+  }
+}
+
+// Enhanced sitemap with proper dynamic route handling
+// app/sitemap.xml/route.ts (Fixed with better SEO structure)
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kco-consultancy.vercel.app';
+  const currentDate = new Date().toISOString();
+  
+  const routes = [
+    { path: '', priority: '1.0', changefreq: 'weekly' },
+    { path: '/services', priority: '0.9', changefreq: 'weekly' },
+    { path: '/how-we-work', priority: '0.8', changefreq: 'monthly' },
+    { path: '/pricing', priority: '0.9', changefreq: 'weekly' },
+    { path: '/case-studies', priority: '0.8', changefreq: 'monthly' },
+    { path: '/contact', priority: '0.7', changefreq: 'monthly' },
+    { path: '/privacy', priority: '0.3', changefreq: 'yearly' },
+    { path: '/terms', priority: '0.3', changefreq: 'yearly' }
+  ];
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+${routes.map(route => `  <url>
+    <loc>${baseUrl}${route.path}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+  return new NextResponse(sitemap, {
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400', // Cache for 24 hours
+    },
+  });
+}
+
+// app/robots.txt/route.ts (Enhanced with better SEO directives)
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kco-consultancy.vercel.app';
+  
+  const robots = `User-agent: *
+Allow: /
+
+# High-priority pages
+Allow: /services
+Allow: /pricing  
+Allow: /how-we-work
+Allow: /case-studies
+Allow: /contact
+
+# Block admin and API routes (if any)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: ${baseUrl}/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1`;
+
+  return new NextResponse(robots, {
+    headers: {
+      'Content-Type': 'text/plain',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400', // Cache for 24 hours
+    },
+  });
+}
+
+// .env.example (Updated with production-ready variables)
+# Brevo SMTP Configuration (Required for contact form)
+BREVO_API_KEY=your_brevo_api_key_here
+BREVO_SENDER_EMAIL=hello@kco-consultancy.com
+
+# Analytics
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-production-domain.com
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://your-production-domain.com
+NEXT_PUBLIC_CONTACT_EMAIL=hello@kco-consultancy.com
+
+# Optional: Additional integrations
+CALENDLY_LINK=https://calendly.com/your-calendly-account
+GITHUB_REPO_URL=https://github.com/your-org/kco-site
+
+# app/contact/page.tsx (Enhanced with better validation and UX)
+"use client";
+
+import { useState } from "react";
+import { Metadata } from "next";
+import { SectionWrapper } from "@/components/section-wrapper";
+import { trackEvent } from "@/lib/analytics";
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    website: "",
+    budget: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = "Project details are required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Please provide more details about your project";
+    }
+    
+    if (formData.website && !formData.website.startsWith('http')) {
+      newErrors.website = "Please enter a valid URL (include http:// or https://)";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    
+    try {
+      trackEvent("Contact Form Submit", { 
+        budget: formData.budget,
+        hasCompany: !!formData.company,
+        hasWebsite: !!formData.website,
+      });
+      
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          website: "",
+          budget: "",
+          message: ""
+        });
+        trackEvent("Contact Form Success", { budget: formData.budget });
+      } else {
+        setSubmitStatus("error");
+        console.error("Form submission error:", result.error);
+        trackEvent("Contact Form Error", { error: result.error });
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error("Form submission error:", error);
+      trackEvent("Contact Form Error", { error: "Network error" });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <SectionWrapper className="pt-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Let's build something great together
+            </h1>
+            <p className="text-xl text-gray-300">
+              Tell us about your project and we'll get back to you within 24 hours.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="bg-k-gray-900 border border-k-gray-700 rounded-2xl p-8">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-k-gray-800 border ${errors.name ? 'border-red-500' : 'border-k-gray-700'} rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-k-purple-soft focus:border-transparent transition-colors`}
+                      placeholder="Your name"
+                      aria-describedby={errors.name ? "name-error" : undefined}
+                    />
+                    {errors.name && <p id="name-error" className="mt-1 text-sm text-red-400">{errors.name}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-k-gray-800 border ${errors.email ? 'border-red-500' : 'border-k-gray-700'} rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-k-purple-soft focus:border-transparent transition-colors`}
+                      placeholder="your@email.com"
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                    />
+                    {errors.email && <p id="email-error" className="mt-1 text-sm text-red-400">{errors.email}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-k-gray-800 border border-k-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-k-purple-soft focus:border-transparent transition-colors"
+                      placeholder="Company name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="website" className="block text-sm font-medium text-gray-300 mb-2">
+                      Website
+                    </label>
+                    <input
+                      type="url"
+                      id="website"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-k-gray-800 border ${errors.website ? 'border-red-500' : 'border-k-gray-700'} rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-k-purple-soft focus:border-transparent transition-colors`}
+                      placeholder="https://yoursite.com"
+                      aria-describedby={errors.website ? "website-error" : undefined}
+                    />
+                    {errors.website && <p id="website-error" className="mt-1 text-sm text-red-400">{errors.website}</p>}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-2">
+                    Budget Range
+                  </label>
+                  <select
+                    id="budget"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-k-gray-800 border border-k-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-k-purple-soft focus:border-transparent transition-colors"
+                  >
+                    <option value="">Select budget range</option>
+                    <option value="discovery">Discovery Sprint (~$3.5k)</option>
+                    <option value="small-project">Small Project ($10-30k)</option>
+                    <option value="medium-project">Medium Project ($30-60k)</option>
+                    <option value="large-project">Large Project ($60k+)</option>
+                    <option value="fractional">Fractional Team ($12-18k/month)</option>
+                    <option value="not-sure">Not sure yet</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                    Project Details *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 bg-k-gray-800 border ${errors.message ? 'border-red-500' : 'border-k-gray-700'} rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-k-purple-soft focus:border-transparent resize-none transition-colors`}
+                    placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                  />
+                  {errors.message && <p id="message-error" className="mt-1 text-sm text-red-400">{errors.message}</p>}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-k-purple-primary hover:bg-k-purple-deep disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl px-8 py-4 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-k-purple-soft transition-colors"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
+
+                {submitStatus === "success" && (
+                  <div className="bg-green-900/20 border border-green-700 rounded-lg p-4 text-green-400" role="alert">
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <h3 className="font-semibold">Thanks for reaching out!</h3>
+                        <p className="text-sm text-green-300">We'll get back to you within 24 hours.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === "error" && (
+                  <div className="bg-red-900/20 border border-red-700 rounded-lg p-4 text-red-400" role="alert">
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <h3 className="font-semibold">Something went wrong</h3>
+                        <p className="text-sm text-red-300">Please try again or email us directly at hello@kco-consultancy.com.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </form>
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-6">Get in touch</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 text-k-purple-primary mt-1 mr-4">
+                      <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Email</h3>
+                      <p className="text-gray-300">hello@kco-consultancy.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 text-k-purple-primary mt-1 mr-4">
+                      <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Response Time</h3>
+                      <p className="text-gray-300">Within 24 hours</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 text-k-purple-primary mt-1 mr-4">
+                      <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Timezone</h3>
+                      <p className="text-gray-300">EST (UTC-5)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-6">
+                <h3 className="font-semibold text-white mb-4">Prefer to schedule a call?</h3>
+                <p className="text-gray-300 mb-4">
+                  Book a 20-minute consultation call to discuss your project in detail.
+                </p>
+                <a
+                  href={process.env.NEXT_PUBLIC_CALENDLY_LINK || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-k-purple-primary hover:text-k-purple-deep font-medium"
+                  onClick={() => trackEvent("Calendly Click", { location: "contact_page" })}
+                >
+                  Schedule on Calendly
+                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+
+              <div className="bg-k-gray-800 border border-k-gray-700 rounded-2xl p-6">
+                <h3 className="font-semibold text-white mb-4">What happens next?</h3>
+                <ul className="space-y-3 text-sm text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-k-purple-primary mr-2">1.</span>
+                    <span>We'll review your project details and respond within 24 hours</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-k-purple-primary mr-2">2.</span>
+                    <span>Schedule a 20-minute consultation call to discuss your needs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-k-purple-primary mr-2">3.</span>
+                    <span>Receive a custom proposal with timeline and pricing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-k-purple-primary mr-2">4.</span>
+                    <span>Start building your project within 1-2 weeks</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+    </>
+  );
+}
+
+// components/plausible.tsx (Enhanced with better error handling)
+"use client";
+
+import Script from "next/script";
+
+export function PlausibleScript() {
+  const domain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+  
+  if (!domain) {
+    console.warn("NEXT_PUBLIC_PLAUSIBLE_DOMAIN not set - analytics will not be tracked");
+    return null;
+  }
+
+  return (
+    <Script
+      defer
+      data-domain={domain}
+      src="https://plausible.io/js/script.js"
+      strategy="afterInteractive"
+      onError={(e) => {
+        console.error("Failed to load Plausible analytics:", e);
+      }}
+    />
+  );
+}
+
+// lib/analytics.ts (Enhanced with better error handling and debugging)
+declare global {
+  interface Window {
+    plausible?: (eventName: string, options?: { props?: Record<string, any> }) => void;
+  }
+}
+
+export function trackEvent(eventName: string, props?: Record<string, any>) {
+  if (typeof window !== 'undefined') {
+    if (window.plausible) {
+      try {
+        window.plausible(eventName, { props });
+        console.log(`Analytics event: ${eventName}`, props);
+      } catch (error) {
+        console.error('Failed to track analytics event:', error);
+      }
+    } else {
+      console.warn(`Analytics not available - would track: ${eventName}`, props);
+    }
+  }
+}
+
+// Enhanced error handling for common tracking events
+export const trackingEvents = {
+  ctaClick: (location: string, action: string) => 
+    trackEvent("CTA Click", { location, action }),
+  
+  formSubmit: (formType: string, additionalData?: Record<string, any>) =>
+    trackEvent("Form Submit", { form_type: formType, ...additionalData }),
+    
+  pageView: (pageName: string) =>
+    trackEvent("Page View", { page: pageName }),
+    
+  downloadStart: (resource: string) =>
+    trackEvent("Download Start", { resource }),
+} as const;
+
+// next.config.js (Enhanced with production optimizations)
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  
+  // Performance optimizations
+  experimental: {
+    optimizeCss: true,
+  },
+  
+  // Image optimization
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+  
+  // Security headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.brevo.com https://plausible.io;",
+          },
+        ],
+      },
+    ];
+  },
+  
+  // Redirects for SEO
+  async redirects() {
+    return [
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
+  
+  // Rewrites for better URLs
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/sitemap.xml',
+      },
+      {
+        source: '/robots.txt',
+        destination: '/robots.txt',
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+
+// package.json (Updated with additional production dependencies)
+{
+  "name": "kco-consultancy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "build-check": "npm run type-check && npm run lint && npm run build",
+    "analyze": "ANALYZE=true npm run build"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/node": "^20.8.10",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-next": "14.0.4",
+    "@next/bundle-analyzer": "^14.0.4"
+  }
+}
+
+// app/layout.tsx (Enhanced with better metadata and performance)
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { PlausibleScript } from "@/components/plausible";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "K&Co. — Product & Technology Consultancy",
+    template: "%s — K&Co."
+  },
+  description: "Build the right thing. Ship it faster. We're a Product & Technology Consultancy that turns ideas into outcomes with lean discovery, clear roadmaps, and production-ready delivery.",
+  keywords: [
+    "product consultancy",
+    "technology consulting", 
+    "next.js development",
+    "product discovery",
+    "fractional team",
+    "MVP development",
+    "startup consulting",
+    "SaaS development",
+    "web application development"
+  ],
+  authors: [{ name: "K&Co.", url: "https://kco-consultancy.vercel.app" }],
+  creator: "K&Co.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kco-consultancy.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "K&Co. — Product & Technology Consultancy",
+    description: "Build the right thing. Ship it faster. We're a Product & Technology Consultancy that turns ideas into outcomes.",
+    siteName: "K&Co.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "K&Co. Product & Technology Consultancy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "K&Co. — Product & Technology Consultancy",
+    description: "Build the right thing. Ship it faster. We're a Product & Technology Consultancy that turns ideas into outcomes.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={`dark ${inter.variable}`}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#9236E5" />
+      </head>
+      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+        <PlausibleScript />
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+      </body>
+    </html>
+  );
+}
+
+// components/navbar.tsx (Enhanced with better accessibility and analytics)
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { trackingEvents } from "@/lib/analytics";
+import { usePathname } from "next/navigation";
+
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
+
+  const handleCTAClick = () => {
+    trackingEvents.ctaClick("navbar", "book_consult");
+  };
+
+  const handleMenuToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLinkClick = (linkName: string) => {
+    setIsOpen(false);
+    trackingEvents.ctaClick("navbar", linkName);
+  };
+
+  const navLinks = [
+    { href: "/services", label: "Services" },
+    { href: "/how-we-work", label: "How We Work" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/case-studies", label: "Case Studies" },
+  ];
+
+  return (
+    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-k-gray-700" role="navigation" aria-label="Main navigation">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex-shrink-0">
+            <Link 
+              href="/" 
+              className="text-xl font-bold text-white hover:text-k-purple-primary transition-colors"
+              aria-label="K&Co. - Go to homepage"
+            >
+              K&Co.
+            </Link>
+          </div>
+          
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? "text-k-purple-primary bg-k-purple-primary/10"
+                      : "text-gray-300 hover:text-white hover:bg-k-gray-800"
+                  }`}
+                  onClick={() => handleLinkClick(link.label.toLowerCase().replace(" ", "_"))}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link 
+                href="/contact" 
+                onClick={handleCTAClick}
+                className="bg-k-purple-primary hover:bg-k-purple-deep text-white rounded-xl px-5 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-k-purple-soft transition-colors"
+              >
+                Book Consult
+              </Link>
+            </div>
+          </div>
+
+          <div className="md:hidden">
+            <button
+              onClick={handleMenuToggle}
+              className="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-k-purple-soft p-2 rounded-md"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Close main menu" : "Open main menu"}
+            >
+              <span className="sr-only">{isOpen ? "Close" : "Open"} main menu</span>
+              {!isOpen ? (
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              ) : (
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className="md:hidden" id="mobile-menu">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-k-gray-900 border-t border-k-gray-700">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isActive(link.href)
+                    ? "text-k-purple-primary bg-k-purple-primary/10"
+                    : "text-gray-300 hover:text-white hover:bg-k-gray-800"
+                }`}
+                onClick={() => handleLinkClick(link.label.toLowerCase().replace(" ", "_"))}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link 
+              href="/contact" 
+              onClick={() => {
+                handleCTAClick();
+                setIsOpen(false);
+              }}
+              className="bg-k-purple-primary hover:bg-k-purple-deep text-white block px-3 py-2 rounded-md text-base font-medium transition-colors"
+            >
+              Book Consult
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+// README.md (Comprehensive setup and deployment guide)
+# K&Co. Product & Technology Consultancy
+
+A modern, high-converting marketing website built with Next.js 14, TypeScript, and Tailwind CSS. Features include comprehensive SEO optimization, analytics tracking, contact form with email integration, and a responsive design system.
+
+## 🚀 Features
+
+- **Next.js 14** with App Router and Server Components
+- **TypeScript** for complete type safety
+- **Tailwind CSS** with custom design system
+- **Brevo SMTP** integration for contact form
+- **Plausible Analytics** for privacy-focused tracking
+- **Comprehensive SEO** with meta tags, sitemap, and schema markup
+- **Accessibility compliant** (WCAG AA)
+- **Performance optimized** with image optimization and code splitting
+- **Security headers** and CSP implementation
+
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **Email**: Brevo SMTP API
+- **Analytics**: Plausible Analytics
+- **Deployment**: Vercel (recommended)
+- **Development**: ESLint, Prettier, TypeScript
+
+## 📦 Installation & Setup
+
+### 1. Clone and Install
+```bash
+git clone <repository-url>
+cd kco-consultancy
+npm install
+```
+
+### 2. Environment Variables
+Copy `.env.example` to `.env.local` and configure:
+
+```env
+# Required for contact form
+BREVO_API_KEY=your_brevo_api_key_here
+BREVO_SENDER_EMAIL=hello@kco-consultancy.com
+
+# Required for analytics
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-domain.com
+
+# Required for SEO and metadata
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXT_PUBLIC_CONTACT_EMAIL=hello@kco-consultancy.com
+
+# Optional integrations
+CALENDLY_LINK=https://calendly.com/your-account
+GOOGLE_SITE_VERIFICATION=your-google-verification-code
+```
+
+### 3. Brevo Setup
+1. Create a [Brevo account](https://www.brevo.com/)
+2. Go to Settings → API Keys
+3. Generate a new API key
+4. Add to your environment variables
+
+### 4. Development
+```bash
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000)
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect repository to Vercel
+2. Add environment variables in dashboard
+3. Deploy automatically on push to main
+
+### Manual Deployment
+```bash
+npm run build-check  # Type check + lint + build
+npm run start
+```
+
+## 📊 Analytics & SEO
+
+### Plausible Analytics Setup
+1. Create account at [plausible.io](https://plausible.io)
+2. Add your domain
+3. Set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` environment variable
+
+### SEO Features
+- Automatic sitemap generation at `/sitemap.xml`
+- Robots.txt at `/robots.txt`
+- Open Graph and Twitter Card meta tags
+- Structured data markup
+- Performance optimizations for Core Web Vitals
+
+## 📱 Pages Structure
+
+- **Home** (`/`) - Hero, services overview, outcomes by industry
+- **Services** (`/services`) - Detailed service descriptions
+- **How We Work** (`how-we-work`) - Process, rituals, tech stack
+- **Pricing** (`/pricing`) - Transparent pricing with comparison
+- **Case Studies** (`/case-studies`) - Client success stories
+- **Contact** (`/contact`) - Contact form with validation
+- **Privacy** (`/privacy`) - Privacy policy
+- **Terms** (`/terms`) - Terms of service
+
+## 🎨 Design System
+
+### Colors
+```css
+--k-purple-primary: #9236E5
+--k-purple-deep: #6C17B7  
+--k-purple-soft: #C390F0
+--k-gray-900: #0A0A0A
+--k-gray-800: #141414
+--k-gray-700: #1E1E1E
+```
+
+### Typography
+- Font: Inter (self-hosted via Google Fonts)
+- Headings: 600-700 font weight
+- Body: 400-500 font weight
+
+## 🔧 Development Scripts
+
+```bash
+# Development
+npm run dev              # Start development server
+npm run build           # Production build
+npm run start           # Start production server
+
+# Quality Assurance
+npm run lint            # ESLint check
+npm run lint:fix        # Fix lint issues
+npm run type-check      # TypeScript validation
+npm run build-check     # Complete validation + build
+
+# Analysis
+npm run analyze         # Bundle analyzer
+```
+
+## ⚡ Performance Optimizations
+
+- Image optimization with WebP/AVIF formats
+- Code splitting and lazy loading
+- CSS optimization and minification
+- Optimized font loading
+- Service Worker for caching (optional)
+
+## 🔒 Security
+
+- Content Security Policy headers
+- XSS protection headers
+- Form validation and sanitization
+- API rate limiting considerations
+- Secure cookie handling
+
+## 🐛 Common Issues & Solutions
+
+### Contact Form Not Working
+1. Check Brevo API key is valid
+2. Verify environment variables are set
+3. Check browser console for errors
+4. Ensure Brevo sender email is verified
+
+### Analytics Not Tracking
+1. Verify `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set
+2. Check domain matches exactly in Plausible dashboard
+3. Test in incognito mode (ad blockers can interfere)
+
+### Build Errors
+```bash
+npm run type-check  # Check TypeScript errors
+npm run lint        # Check ESLint errors
+```
+
+## 📞 Support & Customization
+
+This codebase is designed to be easily customizable for other consultancies or service businesses. Key areas for customization:
+
+1. **Branding**: Update colors in `tailwind.config.ts`
+2. **Content**: Modify page content and metadata
+3. **Services**: Update service offerings and pricing
+4. **Contact**: Configure email templates and form fields
+
+## 📄 License
+
+This project is proprietary to K&Co. Product & Technology Consultancy.
+
+---
+
+For questions or support, contact [hello@kco-consultancy.com](mailto:hello@kco-consultancy.com).
